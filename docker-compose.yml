@@ -1,0 +1,23 @@
+services:
+
+  app:
+    build: ./app
+    ports:
+      - "3000:3000"
+    depends_on:
+      - postgres
+      - mongo
+
+  postgres:
+    image: postgres:17
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres123
+      POSTGRES_DB: fleetdb
+    ports:
+      - "5432:5432"
+
+  mongo:
+    image: mongo:8
+    ports:
+      - "27017:27017"
